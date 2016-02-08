@@ -6,7 +6,9 @@
   "dependencies": {
     "imagemin-jpeg-recompress": "^4.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-minify-inline": "^0.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
