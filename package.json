@@ -4,7 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "imagemin-jpeg-recompress": "^4.3.0"
+    "imagemin-jpeg-recompress": "^4.3.0",
+    "imagemin-jpegoptim": "^4.1.0"
   },
   "devDependencies": {
     "gulp-minify-inline": "^0.2.0"
