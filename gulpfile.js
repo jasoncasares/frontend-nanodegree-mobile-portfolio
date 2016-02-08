@@ -18,7 +18,7 @@ gulp.task('image', function () {
 gulp.task('css', function() {
     return gulp.src('src/*.html')
         .pipe(inlineCss())
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('dist/'));
 });
 
 //default task
