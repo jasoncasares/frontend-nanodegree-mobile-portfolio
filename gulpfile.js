@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var minifyInline = require('gulp-minify-inline');
-var imageResize = require('gulp-image-resize');
+var imageminJpegRecompress = require('imagemin-jpeg-recompress');
  
 gulp.task('minify-inline', function() {
   gulp.src('src/*.html')
@@ -9,12 +9,7 @@ gulp.task('minify-inline', function() {
 });
 
 gulp.task('image', function () {
-  gulp.src('src/img/*')
-    .pipe(imageResize({ 
-      width : 100,
-      height : 100,
-      crop : true,
-      upscale : false
-    }))
-    .pipe(gulp.dest('dist/img'));
+	return gulp.src('img/*.jpg')
+		.pipe(imageminJpegRecompress({loops: 3})())
+		.pipe(gulp.dest('build/images'));
 });
