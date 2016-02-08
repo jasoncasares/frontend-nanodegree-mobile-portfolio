@@ -20,3 +20,7 @@ gulp.task('css', function() {
         .pipe(inlineCss())
         .pipe(gulp.dest('dist/css'));
 });
+
+//default task
+
+gulp.task('default', ['minify-inline', 'image', 'css']);
