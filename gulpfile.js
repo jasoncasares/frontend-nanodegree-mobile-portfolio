@@ -9,7 +9,7 @@ gulp.task('minify-inline', function() {
 });
 
 gulp.task('image', function () {
-	return gulp.src('src/img/*.jpg','src/views/images/*.jpg')
+	return gulp.src('src/img/*.jpg', 'src/views/images/*.jpg')
 		.pipe(imageminJpegRecompress({loops: 3})())
 		.pipe(gulp.dest('build/images'));
 });
