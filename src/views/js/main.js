@@ -397,22 +397,24 @@ var pizzaElementGenerator = function(i) {
 
   return pizzaContainer;
 };
+'use strict';
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
+  //Changed querySelector to getElementById as well as remove # from pizza size
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -422,9 +424,10 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+   //Changed querySelector to getElementById as well as remove # from randomPizzas
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // Optional TODO: change to 3 sizes? no more xl?
@@ -449,11 +452,15 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  //Changed querySelectorAll to getElementById as well as remove . from randomPizzaContainer
+  //Saved array length in a local variable to improve efficiency
+  //created local variable container for document.getElementsByClassName('randomPizzaContainer')
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var container = document.getElementsByClassName('randomPizzaContainer');
+    for (var i = 0, len = container.length; i < len; i++) {
+      var dx = determineDx(container)[i], size;
+      var newwidth = (container[i].offsetWidth + dx) + 'px';
+      container[i].style.width = newwidth;
     }
   }
 
@@ -469,8 +476,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+// Put  var PizzaDiv outside function so there's only one DOM call
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -521,10 +529,11 @@ function updatePositions() {
   for (i = 0; i < 5; i++) {
     constArray.push(Math.sin((top / 1250) + i));
   }
-      
-  for (i = 0; i < items.length; i++) {
-    var phase = constArray[i % 5];
-
+  
+  // Saved array length in a local variable for efficiency 
+  // var phase changed to phase inside loop   
+  for (i = 0, len = items.length; i < len; i++) {
+    phase = constArray[i % 5];
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -543,18 +552,23 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+// Create var Number of Pizzas to reduce number of background pizzas
+// Changed var elem to outside loop
+// Change document.querySelector to document.getElementById
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  var numberOfPizzas = window.screen.height*cols;
+  var elem = document.createElement('img');
+  for (var i = 0; i < numberOfPizzas; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   updatePositions();
 });
