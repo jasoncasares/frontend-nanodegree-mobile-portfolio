@@ -532,6 +532,7 @@ function updatePositions() {
   
   // Saved array length in a local variable for efficiency 
   // var phase changed to phase inside loop   
+  var phase = constArray[i % 5];
   for (i = 0, len = items.length; i < len; i++) {
     phase = constArray[i % 5];
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
