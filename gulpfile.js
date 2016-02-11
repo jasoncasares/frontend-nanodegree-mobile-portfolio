@@ -12,7 +12,7 @@ gulp.task('minify-inline', function() {
 gulp.task('image', function () {
 	return gulp.src('src/**/*.jpg')
 		.pipe(imageminJpegRecompress({loops: 3})())
-		.pipe(gulp.dest('dist/images'));
+		.pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('css', function() {
