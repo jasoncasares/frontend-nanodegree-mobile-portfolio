@@ -9,10 +9,16 @@ gulp.task('minify-inline', function() {
     .pipe(gulp.dest('dist/'))
 });
 
-gulp.task('image', function () {
-	return gulp.src('src/**/*.jpg')
+gulp.task('image-1', function () {
+	return gulp.src('src/img/*.jpg')
 		.pipe(imageminJpegRecompress({loops: 3})())
 		.pipe(gulp.dest('dist/img'));
+});
+
+gulp.task('image-2', function () {
+	return gulp.src('src/views/images/pizzeria.jpg')
+		.pipe(imageminJpegRecompress({loops: 3})())
+		.pipe(gulp.dest('dist/views/images'));
 });
 
 gulp.task('css', function() {
@@ -23,4 +29,4 @@ gulp.task('css', function() {
 
 //default task
 
-gulp.task('default', ['minify-inline', 'image', 'css']);
+gulp.task('default', ['minify-inline', 'image-1', 'image-2', 'css']);
