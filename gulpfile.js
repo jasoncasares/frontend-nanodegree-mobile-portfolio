@@ -16,7 +16,7 @@ gulp.task('image-1', function () {
 });
 
 gulp.task('image-2', function () {
-	return gulp.src('src/views/images/pizzeria.jpg')
+	return gulp.src('src/views/images/*.jpg')
 		.pipe(imageminJpegRecompress({loops: 3})())
 		.pipe(gulp.dest('dist/views/images'));
 });
