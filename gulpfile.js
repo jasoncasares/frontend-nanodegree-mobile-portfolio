@@ -15,6 +15,12 @@ gulp.task('image-1', function () {
 		.pipe(gulp.dest('dist/img'));
 });
 
+gulp.task('image-2', function () {
+	return gulp.src('src/views/images/*.jpg')
+		.pipe(imageminJpegRecompress({loops: 3})())
+		.pipe(gulp.dest('dist/views/images'));
+});
+
 gulp.task('css', function() {
     return gulp.src('src/*.html')
         .pipe(inlineCss())
@@ -23,4 +29,4 @@ gulp.task('css', function() {
 
 //default task
 
-gulp.task('default', ['minify-inline', 'image-1', 'css']);
+gulp.task('default', ['minify-inline', 'image-1', 'image-2', 'css']);
