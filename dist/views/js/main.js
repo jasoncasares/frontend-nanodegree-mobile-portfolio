@@ -456,12 +456,11 @@ var resizePizzas = function(size) {
   //Saved array length in a local variable to improve efficiency
   //created local variable container for document.getElementsByClassName('randomPizzaContainer')
   function changePizzaSizes(size) {
-    var container = document.getElementsByClassName('randomPizzaContainer');
+    var container = document.getElementsByClassName('randomPizzaContainer'); 
+    var dx = determineDx(container[0], size;
+    var newwidth = (container[0].offsetWidth + dx) + 'px';
     for (var i = 0, len = container.length; i < len; i++) {
-      var dx = determineDx.container[i], size;
-      var newwidth = (container[i].offsetWidth + dx) + 'px';
       container[i].style.width = newwidth;
-    }
   }
 
   changePizzaSizes(size);
@@ -561,6 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   var numberOfPizzas = window.screen.height/s*cols;
   var elem;
+  var movingPizzas = document.getElementById('movingPizzas1');
   for (var i = 0; i < numberOfPizzas; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   updatePositions();
 });
