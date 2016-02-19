@@ -19,6 +19,12 @@ gulp.task('image-1', function () {
 gulp.task('image-2', function () {
 	return gulp.src('src/views/images/*.jpg')
 		.pipe(imageminJpegRecompress({loops: 3})())
+		.pipe(imageResize({ 
+	      width : 100,
+	      height : 100,
+	      crop : true,
+	      upscale : false
+	    }))
 		.pipe(gulp.dest('dist/views/images'));
 });
 
