@@ -16,21 +16,11 @@ gulp.task('image-1', function () {
 		.pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('image-2', function () {
-	return gulp.src('src/views/images/*.jpg')
-		.pipe(imageminJpegRecompress({loops: 3})())
-		.pipe(gulp.dest('dist/views/images'));
-});
-
 gulp.task('pizza', function () {
   gulp.src('src/views/images/*.jpg')
     .pipe(responsive({
       'pizzeria.jpg': [{
         width: 100,
-        suffix: '-100'
-      }, {
-        width: 100 * 2,
-        suffix: '-100-2x'
       }],
       '*.jpg': [{
         width: 600,
@@ -48,4 +38,4 @@ gulp.task('css', function() {
 
 //default task
 
-gulp.task('default', ['minify-inline', 'image-1', 'image-2', 'pizza', 'css']);
+gulp.task('default', ['minify-inline', 'image-1', 'pizza', 'css']);
