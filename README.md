@@ -1,5 +1,10 @@
 Website Optimization
 
+ Optimized a provided website with a number of optimization- and performance-related issues so that it achieves a target PageSpeed score and runs at 60 frames per second.
+
+ Technologies used: HTML, CSS, Chrome Developer Tools, Gulp
+
+Proccess
 1. For the pagespeed insights optimization open the link
    https://developers.google.com/speed/pagespeed/insights/
 
